@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petualangan Bangun Datar - Media Pembelajaran SD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#FFD93D; --pink:#FF8FB1; --blue:#4FC3F7; --green:#7ED957;
+  --purple:#B983FF; --orange:#FF9F45; --red:#FF6B6B; --teal:#4ED0C4;
+  --dark:#2D2A32; --muted:#6B6580; --cream:#FFF9F0; --white:#ffffff;
+  --shadow:6px 6px 0 var(--dark);
+  --shadow-sm:4px 4px 0 var(--dark);
+  --radius:24px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito','Segoe UI',sans-serif; color:var(--dark); background:var(--cream);
+  background-image:radial-gradient(#f3e4c8 1.6px, transparent 1.6px);
+  background-size:26px 26px; overflow-x:hidden;
+}
+h1,h2,h3,.font-display{font-family:'Fredoka','Comic Sans MS','Chalkboard SE',sans-serif}
+::selection{background:var(--yellow)}
+button{font-family:inherit;cursor:pointer}
+img,svg{display:block;max-width:100%}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:12px;z-index:100;margin:12px auto 0;max-width:1180px;width:calc(100% - 24px);
+  background:var(--white);border:3px solid var(--dark);border-radius:22px;box-shadow:var(--shadow-sm);
+  display:flex;align-items:center;gap:10px;padding:10px 16px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--dark);font-weight:700}
+.logo-badge{width:44px;height:44px;flex:0 0 44px}
+.logo-text{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.05}
+.logo-text small{display:block;font-family:'Nunito',sans-serif;font-size:.68rem;color:var(--muted);font-weight:800;letter-spacing:.4px}
+.nav-links{display:flex;gap:4px;margin-left:auto;align-items:center}
+.nav-links a{text-decoration:none;color:var(--dark);font-weight:800;font-size:.9rem;padding:9px 14px;border-radius:14px;transition:.2s}
+.nav-links a:hover{background:var(--yellow)}
+.nav-cta{background:var(--dark);color:#fff!important;border:2px solid var(--dark)}
+.nav-cta:hover{background:var(--pink)!important;color:var(--dark)!important}
+.sound-btn{width:42px;height:42px;border:3px solid var(--dark);border-radius:14px;background:var(--teal);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 var(--dark);transition:.15s}
+.sound-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--dark)}
+.hamburger{display:none;width:44px;height:44px;border:3px solid var(--dark);border-radius:14px;background:var(--yellow);font-size:1.2rem;font-weight:900;box-shadow:3px 3px 0 var(--dark)}
+.mobile-menu{display:none;max-width:1180px;width:calc(100% - 24px);margin:8px auto 0;background:#fff;border:3px solid var(--dark);border-radius:18px;box-shadow:var(--shadow-sm);padding:10px;position:sticky;top:84px;z-index:99}
+.mobile-menu a{display:block;text-decoration:none;color:var(--dark);font-weight:800;padding:12px;border-radius:12px}
+.mobile-menu a:hover{background:var(--yellow)}
+.mobile-menu.open{display:block}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+section{padding:56px 0 8px}
+.badge{display:inline-block;font-weight:900;font-size:.78rem;letter-spacing:1.2px;text-transform:uppercase;
+  background:#fff;border:3px solid var(--dark);border-radius:999px;padding:7px 16px;box-shadow:3px 3px 0 var(--dark);margin-bottom:14px}
+.sec-title{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.1;margin-bottom:10px}
+.sec-title .hl{position:relative;display:inline-block;padding:0 10px}
+.hl-yellow{background:linear-gradient(transparent 55%,var(--yellow) 55%)}
+.hl-pink{background:linear-gradient(transparent 55%,var(--pink) 55%)}
+.hl-blue{background:linear-gradient(transparent 55%,var(--blue) 55%)}
+.hl-green{background:linear-gradient(transparent 55%,var(--green) 55%)}
+.hl-purple{background:linear-gradient(transparent 55%,var(--purple) 55%)}
+.sec-sub{color:var(--muted);font-weight:700;font-size:1.02rem;max-width:640px}
+
+/* ---------- HERO ---------- */
+.hero{padding:34px 0 10px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;
+  background:var(--white);border:3px solid var(--dark);border-radius:32px;box-shadow:8px 8px 0 var(--dark);
+  padding:clamp(24px,4vw,48px);position:relative;overflow:hidden}
+.hero-grid::before{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;
+  background:repeating-conic-gradient(var(--yellow) 0 14deg,#fff 14deg 28deg);opacity:.5}
+.hero-grid::after{content:"";position:absolute;bottom:-70px;left:-70px;width:200px;height:200px;border-radius:50%;background:var(--pink);opacity:.25}
+.hero-copy{position:relative;z-index:2}
+.hero-copy h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;margin:12px 0 14px}
+.hero-copy h1 .w1{color:#FF5D8F}.hero-copy h1 .w2{color:#2E9BDA}.hero-copy h1 .w3{color:#4CAF50}
+.hero-copy p{color:var(--muted);font-weight:700;font-size:1.05rem;max-width:480px}
+.hero-btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--dark);font-weight:900;font-size:1rem;
+  border:3px solid var(--dark);border-radius:18px;padding:13px 22px;box-shadow:var(--shadow-sm);transition:.15s;background:#fff}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--dark)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--dark)}
+.btn-yellow{background:var(--yellow)}.btn-pink{background:var(--pink);color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.btn-dark{background:var(--dark);color:#fff}.btn-green{background:var(--green)}.btn-blue{background:var(--blue)}
+.hero-stats{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.stat{background:var(--cream);border:3px solid var(--dark);border-radius:16px;padding:10px 16px;text-align:center;min-width:110px;box-shadow:3px 3px 0 var(--dark)}
+.stat b{display:block;font-family:'Fredoka',sans-serif;font-size:1.4rem}
+.stat span{font-size:.75rem;font-weight:800;color:var(--muted)}
+.hero-stage{position:relative;z-index:2;min-height:380px;display:flex;align-items:center;justify-content:center}
+.hero-stage svg.mascot{position:absolute;filter:drop-shadow(4px 5px 0 rgba(45,42,50,.9))}
+.float1{animation:floaty 3.2s ease-in-out infinite}
+.float2{animation:floaty 4s ease-in-out infinite reverse}
+.float3{animation:wiggle 3.6s ease-in-out infinite}
+.float4{animation:floaty 4.6s ease-in-out infinite}
+.float5{animation:spinSlow 14s linear infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(3deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.blink-eyes{transform-origin:center;transform-box:fill-box;animation:blink 4.2s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}94%,96%{transform:scaleY(.08)}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{margin-top:30px;background:var(--dark);border:3px solid var(--dark);border-radius:20px;overflow:hidden;
+  box-shadow:var(--shadow-sm);transform:rotate(-1deg)}
+.marquee-track{display:flex;gap:34px;padding:14px 18px;width:max-content;animation:scrollX 22s linear infinite}
+.marquee-track span{color:#fff;font-family:'Fredoka',sans-serif;font-size:1.05rem;white-space:nowrap;display:flex;align-items:center;gap:10px}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ---------- SHAPE CARDS ---------- */
+.shape-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
+.shape-card{background:#fff;border:3px solid var(--dark);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:.2s;display:flex;flex-direction:column}
+.shape-card:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:var(--shadow)}
+.shape-art{padding:18px 12px 8px;display:flex;justify-content:center;position:relative}
+.shape-art svg{transition:.3s}
+.shape-card:hover .shape-art svg{transform:scale(1.08) rotate(-3deg)}
+.shape-num{position:absolute;top:12px;left:12px;width:30px;height:30px;background:#fff;border:3px solid var(--dark);
+  border-radius:50%;font-family:'Fredoka',sans-serif;font-size:.9rem;display:flex;align-items:center;justify-content:center}
+.shape-body{padding:6px 16px 18px;text-align:center}
+.shape-body h3{font-size:1.25rem;margin-bottom:4px}
+.shape-body p{font-size:.85rem;color:var(--muted);font-weight:700;min-height:40px}
+.mini-formula{display:inline-block;margin:8px 0 12px;background:var(--dark);color:#fff;font-weight:900;font-size:.8rem;
+  border-radius:10px;padding:6px 12px}
+.btn-small{font-size:.88rem;padding:9px 16px;border-radius:14px;width:100%;justify-content:center}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{position:fixed;inset:0;background:rgba(45,42,50,.55);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--cream);border:4px solid var(--dark);border-radius:28px;box-shadow:10px 10px 0 rgba(0,0,0,.35);
+  max-width:720px;width:100%;max-height:90vh;overflow:auto;animation:popIn .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-head{display:flex;align-items:center;gap:14px;padding:20px 22px 0}
+.modal-head h3{font-size:1.7rem}
+.modal-close{margin-left:auto;width:44px;height:44px;flex:0 0 44px;border:3px solid var(--dark);border-radius:14px;
+  background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 var(--dark)}
+.modal-close:active{transform:translate(2px,2px);box-shadow:none}
+.modal-body{padding:16px 22px 26px;display:grid;grid-template-columns:240px 1fr;gap:18px}
+.modal-art{background:#fff;border:3px solid var(--dark);border-radius:20px;display:flex;align-items:center;justify-content:center;padding:18px;min-height:240px}
+.modal-info h4{font-size:1rem;margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.modal-info h4:first-child{margin-top:0}
+.dot{width:14px;height:14px;border-radius:50%;border:2.5px solid var(--dark);display:inline-block;flex:0 0 14px}
+.sifat-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.sifat-list li{background:#fff;border:2.5px solid var(--dark);border-radius:12px;padding:8px 12px;font-size:.88rem;font-weight:700}
+.formula-box{background:var(--dark);color:#fff;border-radius:14px;padding:12px 14px;font-weight:900;font-size:.95rem;margin-top:6px}
+.formula-box .fl{color:var(--yellow)}.formula-box .fk{color:var(--blue)}
+.example-box{background:#fff8df;border:3px dashed var(--dark);border-radius:14px;padding:12px 14px;font-size:.88rem;font-weight:700;margin-top:6px}
+
+/* ---------- LAB ---------- */
+.lab-grid{display:grid;grid-template-columns:340px 1fr;gap:18px;margin-top:26px;align-items:start}
+.lab-controls{background:#fff;border:3px solid var(--dark);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px}
+.lab-controls h3,.lab-stage-card h3{font-size:1.2rem;margin-bottom:12px}
+.shape-pills{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.pill{border:3px solid var(--dark);border-radius:14px;background:var(--cream);font-weight:900;font-size:.8rem;
+  padding:9px 6px;transition:.15s;display:flex;align-items:center;gap:7px;justify-content:center}
+.pill .pill-dot{width:14px;height:14px;border-radius:5px;border:2px solid var(--dark)}
+.pill:hover{transform:translateY(-2px)}
+.pill.active{background:var(--dark);color:#fff;box-shadow:3px 3px 0 var(--pink)}
+.slider-group{margin-bottom:14px;background:var(--cream);border:3px solid var(--dark);border-radius:16px;padding:12px 14px}
+.slider-group label{display:flex;justify-content:space-between;font-weight:900;font-size:.88rem;margin-bottom:8px}
+.slider-val{background:var(--dark);color:#fff;border-radius:9px;padding:2px 10px;font-size:.85rem}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:12px;border-radius:99px;background:#fff;border:3px solid var(--dark);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--pink);
+  border:3px solid var(--dark);box-shadow:2px 2px 0 var(--dark);cursor:grab}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--pink);border:3px solid var(--dark);cursor:grab}
+.toggle-row{display:flex;align-items:center;gap:10px;margin-top:6px;background:#eefaff;border:3px solid var(--dark);
+  border-radius:14px;padding:10px 12px;font-weight:900;font-size:.85rem}
+.toggle-row input{width:22px;height:22px;accent-color:#2E9BDA}
+.lab-stage-card{background:#fff;border:3px solid var(--dark);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px}
+.lab-canvas{border:3px solid var(--dark);border-radius:18px;background:
+  linear-gradient(#fff 0,#fff 100%) padding-box,
+  repeating-linear-gradient(0deg,#e8e4f5 0 1px,transparent 1px 26px),
+  repeating-linear-gradient(90deg,#e8e4f5 0 1px,transparent 1px 26px),#fbf8ff;
+  background-color:#fbf8ff;overflow:hidden}
+.lab-canvas svg{width:100%;height:auto}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.result-card{border:3px solid var(--dark);border-radius:18px;padding:14px 16px;box-shadow:4px 4px 0 var(--dark)}
+.result-card.luas{background:#fff3c4}.result-card.kel{background:#d8f3ff}
+.result-card .rk{font-size:.75rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;opacity:.75}
+.result-card .rv{font-family:'Fredoka',sans-serif;font-size:1.9rem;line-height:1.1;margin:2px 0 8px}
+.result-card .rv small{font-size:1rem}
+.result-steps{font-size:.83rem;font-weight:700;background:rgba(255,255,255,.75);border:2px dashed var(--dark);border-radius:12px;padding:8px 10px;line-height:1.6}
+.pi-note{margin-top:10px;font-size:.82rem;font-weight:800;background:#f0e8ff;border:2.5px solid var(--dark);border-radius:12px;padding:8px 12px;display:none}
+.pi-note.show{display:block}
+
+/* ---------- RUMUS ---------- */
+.rumus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.rumus-card{background:#fff;border:3px solid var(--dark);border-radius:20px;box-shadow:var(--shadow-sm);padding:16px;text-align:center;transition:.2s}
+.rumus-card:hover{transform:translateY(-4px)}
+.rumus-card h4{font-size:1.05rem;margin:8px 0 6px}
+.rumus-card .r-art{display:flex;justify-content:center}
+.rumus-line{font-size:.82rem;font-weight:900;border-radius:10px;padding:6px 8px;margin-top:6px}
+.rumus-line.L{background:#fff3c4;border:2px solid var(--dark)}
+.rumus-line.K{background:#d8f3ff;border:2px solid var(--dark)}
+.tips-box{margin-top:18px;background:var(--dark);color:#fff;border:3px solid var(--dark);border-radius:22px;
+  box-shadow:var(--shadow-sm);padding:22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.tip{background:rgba(255,255,255,.08);border:2px dashed rgba(255,255,255,.4);border-radius:16px;padding:14px}
+.tip b{display:block;font-family:'Fredoka',sans-serif;margin-bottom:4px;font-size:1rem}
+.tip p{font-size:.85rem;font-weight:600;opacity:.9}
+
+/* ---------- QUIZ ---------- */
+.quiz-card{background:#fff;border:3px solid var(--dark);border-radius:28px;box-shadow:var(--shadow);margin-top:26px;
+  padding:clamp(22px,4vw,40px);text-align:center;position:relative;overflow:hidden}
+.quiz-card::before{content:"";position:absolute;top:0;left:0;right:0;height:14px;
+  background:repeating-linear-gradient(90deg,var(--yellow) 0 40px,var(--pink) 40px 80px,var(--blue) 80px 120px,var(--green) 120px 160px)}
+.quiz-progress{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.qbar{flex:1;height:18px;border:3px solid var(--dark);border-radius:99px;background:var(--cream);overflow:hidden}
+.qbar-fill{height:100%;width:0%;background:repeating-linear-gradient(-45deg,var(--green) 0 12px,#5fc73f 12px 24px);transition:width .4s;border-radius:99px}
+.qcount{font-weight:900;font-size:.9rem;background:var(--dark);color:#fff;border-radius:12px;padding:5px 14px;white-space:nowrap}
+.qscore{font-weight:900;font-size:.9rem;background:var(--yellow);border:3px solid var(--dark);border-radius:12px;padding:4px 14px;white-space:nowrap}
+.quiz-q{font-size:clamp(1.1rem,2.6vw,1.5rem);font-weight:900;margin:6px 0 8px}
+.quiz-art{display:flex;justify-content:center;margin:10px 0 4px}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto}
+.opt{border:3px solid var(--dark);border-radius:16px;background:var(--cream);font-weight:900;font-size:1.05rem;
+  padding:15px;transition:.15s;box-shadow:3px 3px 0 var(--dark);display:flex;align-items:center;gap:10px;text-align:left}
+.opt:hover:not(:disabled){transform:translateY(-3px);background:#fff}
+.opt:disabled{cursor:default;opacity:.95}
+.opt .key{width:34px;height:34px;flex:0 0 34px;border:3px solid var(--dark);border-radius:11px;background:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif}
+.opt.correct{background:var(--green);animation:popIn .35s}
+.opt.wrong{background:var(--red);color:#fff;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
+.quiz-feedback{margin:16px auto 0;max-width:640px;border-radius:16px;padding:13px 16px;font-weight:800;display:none;text-align:left}
+.quiz-feedback.good{display:block;background:#e6f9dd;border:3px solid #2f9e44}
+.quiz-feedback.bad{display:block;background:#ffe3e3;border:3px solid #c92a2a}
+.quiz-nav{margin-top:16px;display:flex;justify-content:center;gap:10px}
+.quiz-result-stars{display:flex;justify-content:center;gap:8px;margin:10px 0}
+.quiz-result-stars svg{animation:popIn .4s backwards}
+.quiz-result-stars svg:nth-child(2){animation-delay:.15s}.quiz-result-stars svg:nth-child(3){animation-delay:.3s}
+.big-score{font-family:'Fredoka',sans-serif;font-size:3.4rem;line-height:1}
+.start-art{display:flex;justify-content:center;gap:6px;margin-bottom:8px}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:64px;background:var(--dark);color:#fff;border-top:4px solid var(--dark);position:relative;padding:34px 0 30px}
+footer::before{content:"";position:absolute;top:-24px;left:0;right:0;height:24px;
+  background:radial-gradient(circle at 14px 0, var(--dark) 14px, transparent 15px);background-size:32px 24px;background-repeat:repeat-x}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px;align-items:start}
+.foot-grid h4{font-size:1.1rem;margin-bottom:8px}
+.foot-grid p,.foot-grid a{font-size:.88rem;font-weight:600;opacity:.9;color:#fff;text-decoration:none}
+.foot-grid a:hover{opacity:1;text-decoration:underline}
+.foot-bottom{margin-top:22px;padding-top:16px;border-top:2px dashed rgba(255,255,255,.3);text-align:center;font-size:.82rem;font-weight:700;opacity:.85}
+
+/* ---------- MISC ---------- */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:300}
+.reveal{opacity:0;transform:translateY(28px);transition:.6s ease}
+.reveal.visible{opacity:1;transform:none}
+.back-top{position:fixed;right:18px;bottom:18px;z-index:150;width:52px;height:52px;border:3px solid var(--dark);
+  border-radius:16px;background:var(--yellow);box-shadow:var(--shadow-sm);display:none;align-items:center;justify-content:center}
+.back-top.show{display:flex}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media(max-width:1020px){
+  .shape-grid,.rumus-grid{grid-template-columns:repeat(2,1fr)}
+  .lab-grid{grid-template-columns:1fr}
+  .tips-box{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-stage{min-height:300px}
+  .modal-body{grid-template-columns:1fr}
+  .modal-art{min-height:190px}
+}
+@media(max-width:760px){
+  .nav-links{display:none}
+  .hamburger{display:block;margin-left:auto}
+  .sound-btn{margin-left:0}
+  nav .sound-btn{margin-left:0}
+  .quiz-opts{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .shape-grid,.rumus-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .shape-body p{min-height:54px}
+}
+@media(max-width:460px){
+  .shape-grid,.rumus-grid{grid-template-columns:1fr}
+  .shape-body p{min-height:0}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- ============ NAV ============ -->
+<nav aria-label="Navigasi utama">
+  <a class="logo" href="#beranda">
+    <span class="logo-badge" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="44" height="44">
+        <rect x="3" y="3" width="20" height="20" rx="5" fill="#FFD93D" stroke="#2D2A32" stroke-width="2.5"/>
+        <circle cx="36" cy="13" r="10" fill="#FF8FB1" stroke="#2D2A32" stroke-width="2.5"/>
+        <path d="M6 44 L20 28 L34 44 Z" fill="#4FC3F7" stroke="#2D2A32" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="10" cy="10" r="2" fill="#2D2A32"/><circle cx="16" cy="10" r="2" fill="#2D2A32"/>
+        <path d="M10 16 Q13 18.5 16 16" stroke="#2D2A32" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="logo-text">Petualangan<br>Bangun Datar<small>MEDIA BELAJAR • KELAS SD</small></span>
+  </a>
+  <div class="nav-links">
+    <a href="#kenalan">Kenalan</a>
+    <a href="#lab">Lab Simulasi</a>
+    <a href="#rumus">Rumus</a>
+    <a href="#kuis" class="nav-cta">Main Kuis</a>
+  </div>
+  <button class="sound-btn" id="soundBtn" title="Suara hidup/mati" aria-label="Suara hidup atau mati">
+    <svg id="soundOnIcon" viewBox="0 0 24 24" width="22" height="22"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2D2A32"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke="#2D2A32" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    <svg id="soundOffIcon" viewBox="0 0 24 24" width="22" height="22" style="display:none"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2D2A32"/><path d="M16 9l6 6M22 9l-6 6" stroke="#2D2A32" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <button class="hamburger" id="hamburger" aria-label="Buka menu">≡</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#kenalan">Kenalan dengan Bangun</a>
+  <a href="#lab">Lab Simulasi</a>
+  <a href="#rumus">Rumus Cepat</a>
+  <a href="#kuis">Main Kuis</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="wrap hero" id="beranda">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="badge">Matematika SD • Bangun Datar</span>
+      <h1>Hai, Teman Hebat! Ayo Berpetualang di <span class="w1">Negeri</span> <span class="w2">Bangun</span> <span class="w3">Datar!</span></h1>
+      <p>Kenalan dengan 8 bentuk lucu, putar-putar ukurannya di Lab Simulasi, hafalkan rumusnya, lalu uji kehebatanmu lewat kuis seru. Belajar matematika jadi main yang menyenangkan!</p>
+      <div class="hero-btns">
+        <a href="#lab" class="btn btn-yellow">Buka Lab Simulasi
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 4h6v2h3v3h-2v11a2 2 0 01-2 2H10a2 2 0 01-2-2V9H6V6h3V4z" fill="#2D2A32" opacity=".85"/><rect x="10" y="12" width="4" height="6" fill="#FF8FB1"/></svg>
+        </a>
+        <a href="#kuis" class="btn btn-pink">Ikut Kuis Seru</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>8</b><span>Bangun Lucu</span></div>
+        <div class="stat"><b>10</b><span>Soal Kuis</span></div>
+        <div class="stat"><b>∞</b><span>Coba Simulasi</span></div>
+      </div>
+    </div>
+    <div class="hero-stage" aria-hidden="true" id="heroStage"></div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+</header>
+
+<main class="wrap">
+  <!-- ============ KENALAN ============ -->
+  <section id="kenalan">
+    <span class="badge reveal">Langkah 1 • Kenalan</span>
+    <h2 class="sec-title reveal">Kenalan dengan <span class="hl hl-yellow">8 Sahabat Bentuk</span></h2>
+    <p class="sec-sub reveal">Klik tombol <b>Pelajari</b> pada setiap kartu untuk melihat sifat, rumus, dan contohnya. Mereka semua ramah dan siap membantumu belajar!</p>
+    <div class="shape-grid" id="shapeGrid"></div>
+  </section>
+
+  <!-- ============ LAB ============ -->
+  <section id="lab">
+    <span class="badge reveal">Langkah 2 • Simulasi</span>
+    <h2 class="sec-title reveal">Lab Simulasi <span class="hl hl-blue">Ubah-Ubah Ukuran</span></h2>
+    <p class="sec-sub reveal">Pilih satu bangun, lalu geser tombol ukurannya. Perhatikan gambarnya berubah dan luas serta kelilingnya dihitung otomatis langkah demi langkah!</p>
+    <div class="lab-grid reveal">
+      <div class="lab-controls">
+        <h3>1. Pilih Bangun</h3>
+        <div class="shape-pills" id="shapePills"></div>
+        <h3>2. Geser Ukurannya</h3>
+        <div id="sliderBox"></div>
+        <label class="toggle-row"><input type="checkbox" id="gridToggle" checked> Tampilkan kotak satuan (1 kotak = 1 cm²)</label>
+      </div>
+      <div class="lab-stage-card">
+        <h3 id="labTitle">Persegi</h3>
+        <div class="lab-canvas"><svg id="labSvg" viewBox="0 0 440 330" role="img" aria-label="Gambar simulasi bangun datar"></svg></div>
+        <div class="result-grid">
+          <div class="result-card luas">
+            <div class="rk">Luas (isi di dalam)</div>
+            <div class="rv" id="luasVal">–</div>
+            <div class="result-steps" id="luasSteps">–</div>
+          </div>
+          <div class="result-card kel">
+            <div class="rk">Keliling (jalan keliling tepi)</div>
+            <div class="rv" id="kelVal">–</div>
+            <div class="result-steps" id="kelSteps">–</div>
+          </div>
+        </div>
+        <div class="pi-note" id="piNote"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RUMUS ============ -->
+  <section id="rumus">
+    <span class="badge reveal">Langkah 3 • Hafalan</span>
+    <h2 class="sec-title reveal">Kartu Rumus <span class="hl hl-green">Super Cepat</span></h2>
+    <p class="sec-sub reveal">Semua rumus penting dalam satu tempat. Ingat polanya: <b>Luas</b> itu isi bagian dalam (cm²), <b>Keliling</b> itu panjang jalan mengelilingi tepi (cm).</p>
+    <div class="rumus-grid reveal" id="rumusGrid"></div>
+    <div class="tips-box reveal">
+      <div class="tip"><b>Tips 1: Luas vs Keliling</b><p>Luas selalu pakai <b>persegi</b> (cm²) karena menghitung kotak-kotak isi. Keliling pakai <b>cm biasa</b> karena mengukur garis tepi.</p></div>
+      <div class="tip"><b>Tips 2: Segitiga itu Setengah</b><p>Segitiga adalah setengah dari persegi panjang. Makanya rumusnya selalu diawali <b>½ × alas × tinggi</b>.</p></div>
+      <div class="tip"><b>Tips 3: Lingkaran &amp; Angka 7</b><p>Kalau jari-jarinya kelipatan 7 (7, 14, 21...), pakai π = <b>22/7</b>. Kalau bukan, pakai π = <b>3,14</b>.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ KUIS ============ -->
+  <section id="kuis" style="padding-bottom:10px">
+    <span class="badge reveal">Langkah 4 • Tantangan</span>
+    <h2 class="sec-title reveal">Kuis <span class="hl hl-pink">Petualang Hebat</span></h2>
+    <p class="sec-sub reveal">Jawab 10 soal campuran: hitungan dan tebak gambar. Kumpulkan bintang dan jadilah Master Bangun Datar!</p>
+    <div class="quiz-card reveal" id="quizCard">
+      <!-- START -->
+      <div id="quizStart">
+        <div class="start-art" id="quizStartArt"></div>
+        <h3 style="font-size:1.8rem;margin-bottom:6px">Siap Berpetualang?</h3>
+        <p style="color:var(--muted);font-weight:700;max-width:520px;margin:0 auto">10 soal • 4 pilihan jawaban • boleh salah, yang penting berani mencoba. Setiap jawaban benar menambah skormu!</p>
+        <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-green" id="quizStartBtn">Mulai Kuis Sekarang</button>
+        </div>
+      </div>
+      <!-- PLAY -->
+      <div id="quizPlay" style="display:none">
+        <div class="quiz-progress">
+          <span class="qcount" id="qCount">Soal 1/10</span>
+          <div class="qbar"><div class="qbar-fill" id="qBar"></div></div>
+          <span class="qscore" id="qScore">Skor: 0</span>
+        </div>
+        <div class="quiz-art" id="quizArt"></div>
+        <p class="quiz-q" id="quizQ"></p>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <div class="quiz-feedback" id="quizFb"></div>
+        <div class="quiz-nav"><button class="btn btn-dark" id="quizNext" style="display:none">Soal Berikutnya</button></div>
+      </div>
+      <!-- RESULT -->
+      <div id="quizResult" style="display:none">
+        <div class="quiz-result-stars" id="qStars"></div>
+        <div class="big-score" id="qFinal">0</div>
+        <h3 style="font-size:1.7rem" id="qTitle">Hebat!</h3>
+        <p style="color:var(--muted);font-weight:700" id="qMsg"></p>
+        <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-yellow" id="quizRetry">Main Lagi</button>
+          <a href="#lab" class="btn">Belajar di Lab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Petualangan Bangun Datar</h4>
+        <p>Media pembelajaran interaktif materi Bangun Datar untuk siswa Sekolah Dasar. Belajar sifat, rumus luas dan keliling lewat simulasi dan kuis yang menyenangkan.</p>
+      </div>
+      <div>
+        <h4>Jelajahi</h4>
+        <p><a href="#kenalan">Kenalan dengan Bangun</a><br><a href="#lab">Lab Simulasi</a><br><a href="#rumus">Kartu Rumus</a><br><a href="#kuis">Kuis Seru</a></p>
+      </div>
+      <div>
+        <h4>Untuk Guru &amp; Orang Tua</h4>
+        <p>Materi mencakup persegi, persegi panjang, segitiga, lingkaran, jajar genjang, belah ketupat, layang-layang, dan trapesium. File ini tunggal (HTML+CSS+JS) dan dapat dibuka tanpa internet.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">Dibuat dengan penuh semangat untuk para petualang cilik Indonesia • Selamat belajar!</div>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Persegi</h3>
+      <button class="modal-close" id="modalClose" aria-label="Tutup"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-art" id="modalArt"></div>
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+</div>
+
+<button class="back-top" id="backTop" aria-label="Kembali ke atas">
+  <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 4l8 8h-5v8h-6v-8H4z" fill="#2D2A32"/></svg>
+</button>
+
+<script>
+/* =====================================================
+   DATA BANGUN DATAR
+===================================================== */
+const SHAPES = {
+  persegi: {
+    name: "Persegi", color: "#FFD93D",
+    desc: "Persegi adalah bangun yang punya 4 sisi sama panjang dan 4 sudut siku-siku. Bentuknya seperti papan catur atau sapu tangan!",
+    sifat: ["Punya 4 sisi yang semuanya sama panjang", "Punya 4 sudut siku-siku (90°)", "Sisi yang berhadapan selalu sejajar", "Punya 2 garis diagonal yang sama panjang"],
+    luas: "sisi × sisi", keliling: "4 × sisi",
+    contoh: "Sisi = 5 cm. Luas = 5 × 5 = 25 cm². Keliling = 4 × 5 = 20 cm."
+  },
+  persegipanjang: {
+    name: "Persegi Panjang", color: "#FF9F45",
+    desc: "Persegi panjang punya 4 sisi dengan sisi yang berhadapan sama panjang. Bentuknya seperti pintu, buku, atau papan tulis!",
+    sifat: ["Punya 4 sisi: 2 panjang dan 2 lebar", "Punya 4 sudut siku-siku (90°)", "Sisi yang berhadapan sama panjang dan sejajar", "Punya 2 garis diagonal yang sama panjang"],
+    luas: "panjang × lebar", keliling: "2 × (panjang + lebar)",
+    contoh: "p = 8 cm, l = 5 cm. Luas = 8 × 5 = 40 cm². Keliling = 2 × (8+5) = 26 cm."
+  },
+  segitiga: {
+    name: "Segitiga", color: "#7ED957",
+    desc: "Segitiga punya 3 sisi dan 3 sudut. Bentuknya seperti potongan pizza, tenda, atau atap rumah!",
+    sifat: ["Punya 3 sisi dan 3 sudut", "Jumlah ketiga sudutnya selalu 180°", "Alas dan tinggi harus tegak lurus", "Ada segitiga sama sisi, sama kaki, dan siku-siku"],
+    luas: "½ × alas × tinggi", keliling: "sisi + sisi + sisi",
+    contoh: "alas = 10 cm, tinggi = 6 cm. Luas = ½ × 10 × 6 = 30 cm²."
+  },
+  lingkaran: {
+    name: "Lingkaran", color: "#FF8FB1",
+    desc: "Lingkaran bentuknya bulat sempurna tanpa sudut. Seperti roda, jam dinding, atau donat favoritmu!",
+    sifat: ["Tidak punya sisi lurus dan tidak punya sudut", "Punya titik pusat di tengah-tengah", "Jari-jari (r) = setengah diameter (d)", "Nilai π = 22/7 atau 3,14"],
+    luas: "π × r × r", keliling: "2 × π × r",
+    contoh: "r = 7 cm. Luas = 22/7 × 7 × 7 = 154 cm². Keliling = 2 × 22/7 × 7 = 44 cm."
+  },
+  jajargenjang: {
+    name: "Jajar Genjang", color: "#4FC3F7",
+    desc: "Jajar genjang seperti persegi panjang yang miring didorong angin! Sisi yang berhadapan sama panjang dan sejajar.",
+    sifat: ["Sisi berhadapan sama panjang dan sejajar", "Sudut berhadapan sama besar", "Tidak punya sudut siku-siku", "Tinggi diukur tegak lurus dengan alas"],
+    luas: "alas × tinggi", keliling: "2 × (alas + sisi miring)",
+    contoh: "alas = 9 cm, tinggi = 4 cm. Luas = 9 × 4 = 36 cm²."
+  },
+  belahketupat: {
+    name: "Belah Ketupat", color: "#B983FF",
+    desc: "Belah ketupat seperti permata atau ketupat lebaran! Keempat sisinya sama panjang dan diagonalnya berpotongan tegak lurus.",
+    sifat: ["Keempat sisinya sama panjang", "Punya 2 diagonal yang berpotongan tegak lurus", "Sudut berhadapan sama besar", "Diagonal membagi dua sama panjang"],
+    luas: "½ × diagonal 1 × diagonal 2", keliling: "4 × sisi",
+    contoh: "d1 = 8 cm, d2 = 6 cm. Luas = ½ × 8 × 6 = 24 cm²."
+  },
+  layang: {
+    name: "Layang-Layang", color: "#4ED0C4",
+    desc: "Bentuknya seperti layangan yang terbang di langit! Punya 2 pasang sisi yang sama panjang dan berdekatan.",
+    sifat: ["Punya 2 pasang sisi sama panjang yang berdekatan", "Punya 2 diagonal yang berpotongan tegak lurus", "Satu diagonal membagi diagonal lain sama panjang", "Punya sepasang sudut berhadapan yang sama besar"],
+    luas: "½ × diagonal 1 × diagonal 2", keliling: "2 × (sisi pendek + sisi panjang)",
+    contoh: "d1 = 10 cm, d2 = 8 cm. Luas = ½ × 10 × 8 = 40 cm²."
+  },
+  trapesium: {
+    name: "Trapesium", color: "#FF6B6B",
+    desc: "Trapesium punya sepasang sisi yang sejajar (atas dan bawah). Bentuknya seperti atap rumah yang dipotong atau tas tangan!",
+    sifat: ["Punya sepasang sisi sejajar (sisi atas & bawah)", "Tinggi adalah jarak tegak lurus kedua sisi sejajar", "Trapesium sama kaki punya kaki yang sama panjang", "Jumlah sudut berdekatan = 180°"],
+    luas: "½ × (atas + bawah) × tinggi", keliling: "jumlah semua sisi",
+    contoh: "atas = 6 cm, bawah = 10 cm, t = 4 cm. Luas = ½ × (6+10) × 4 = 32 cm²."
+  }
+};
+const ORDER = ["persegi","persegipanjang","segitiga","lingkaran","jajargenjang","belahketupat","layang","trapesium"];
+
+/* Ikon bentuk kecil untuk marquee + pills */
+const MINI = {
+  persegi:'<svg viewBox="0 0 24 24" width="18" height="18"><rect x="4" y="4" width="16" height="16" rx="3" fill="#FFD93D" stroke="#2D2A32" stroke-width="2"/></svg>',
+  persegipanjang:'<svg viewBox="0 0 24 24" width="18" height="18"><rect x="2" y="6" width="20" height="12" rx="3" fill="#FF9F45" stroke="#2D2A32" stroke-width="2"/></svg>',
+  segitiga:'<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3 L22 20 H2 Z" fill="#7ED957" stroke="#2D2A32" stroke-width="2" stroke-linejoin="round"/></svg>',
+  lingkaran:'<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="#FF8FB1" stroke="#2D2A32" stroke-width="2"/></svg>',
+  jajargenjang:'<svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 4 H21 L17 20 H3 Z" fill="#4FC3F7" stroke="#2D2A32" stroke-width="2" stroke-linejoin="round"/></svg>',
+  belahketupat:'<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2 L22 12 L12 22 L2 12 Z" fill="#B983FF" stroke="#2D2A32" stroke-width="2" stroke-linejoin="round"/></svg>',
+  layang:'<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2 L20 10 L12 22 L4 10 Z" fill="#4ED0C4" stroke="#2D2A32" stroke-width="2" stroke-linejoin="round"/></svg>',
+  trapesium:'<svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 4 H17 L21 20 H3 Z" fill="#FF6B6B" stroke="#2D2A32" stroke-width="2" stroke-linejoin="round"/></svg>'
+};
+const STAR = '<svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 1l3 7 7 .6-5.4 4.7 1.6 7L12 16l-6.2 4.3 1.6-7L2 8.6 9 8z" fill="#FFD93D" stroke="#2D2A32" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+
+/* =====================================================
+   WAJAH LUCU (mata + senyum + pipi) — tanpa emoji
+===================================================== */
+function face(cx, cy, s){
+  s = s || 1;
+  const e = 13*s, erx = 9*s, ery = 11*s, pr = 3.6*s;
+  return `<g class="face" aria-hidden="true">
+    <ellipse cx="${cx-e}" cy="${cy}" rx="${erx}" ry="${ery}" fill="#fff" stroke="#2D2A32" stroke-width="${2.4*s}"/>
+    <ellipse cx="${cx+e}" cy="${cy}" rx="${erx}" ry="${ery}" fill="#fff" stroke="#2D2A32" stroke-width="${2.4*s}"/>
+    <g class="blink-eyes">
+      <circle cx="${cx-e+2*s}" cy="${cy+2*s}" r="${pr}" fill="#2D2A32"/>
+      <circle cx="${cx+e+2*s}" cy="${cy+2*s}" r="${pr}" fill="#2D2A32"/>
+      <circle cx="${cx-e+3.2*s}" cy="${cy+0.8*s}" r="${1.2*s}" fill="#fff"/>
+      <circle cx="${cx+e+3.2*s}" cy="${cy+0.8*s}" r="${1.2*s}" fill="#fff"/>
+    </g>
+    <path d="M ${cx-11*s} ${cy+15*s} Q ${cx} ${cy+24*s} ${cx+11*s} ${cy+15*s}" stroke="#2D2A32" stroke-width="${2.6*s}" fill="none" stroke-linecap="round"/>
+    <ellipse cx="${cx-23*s}" cy="${cy+11*s}" rx="${5.5*s}" ry="${3.6*s}" fill="#FF8FB1" opacity=".75"/>
+    <ellipse cx="${cx+23*s}" cy="${cy+11*s}" rx="${5.5*s}" ry="${3.6*s}" fill="#FF8FB1" opacity=".75"/>
+  </g>`;
+}
+
+/* Maskot tiap bangun untuk kartu / hero / kuis */
+function mascotSVG(id, w){
+  w = w || 150;
+  const c = SHAPES[id].color, S = '#2D2A32';
+  let inner = "";
+  if(id==="persegi") inner = `<rect x="30" y="35" width="140" height="140" rx="18" fill="${c}" stroke="${S}" stroke-width="5"/>` + face(100,110,1);
+  if(id==="persegipanjang") inner = `<rect x="15" y="55" width="170" height="105" rx="18" fill="${c}" stroke="${S}" stroke-width="5"/>` + face(100,108,.95);
+  if(id==="segitiga") inner = `<path d="M100 22 L178 168 H22 Z" fill="${c}" stroke="${S}" stroke-width="5" stroke-linejoin="round"/>` + face(100,122,.9);
+  if(id==="lingkaran") inner = `<circle cx="100" cy="105" r="72" fill="${c}" stroke="${S}" stroke-width="5"/>` + face(100,105,1);
+  if(id==="jajargenjang") inner = `<path d="M62 45 H182 L138 165 H18 Z" fill="${c}" stroke="${S}" stroke-width="5" stroke-linejoin="round"/>` + face(100,108,.9);
+  if(id==="belahketupat") inner = `<path d="M100 15 L175 105 L100 195 L25 105 Z" fill="${c}" stroke="${S}" stroke-width="5" stroke-linejoin="round"/>` + face(100,105,.85);
+  if(id==="layang") inner = `<path d="M100 12 L168 92 L100 198 L32 92 Z" fill="${c}" stroke="${S}" stroke-width="5" stroke-linejoin="round"/><path d="M32 92 H168 M100 12 V198" stroke="${S}" stroke-width="2.5" stroke-dasharray="7 6" opacity=".45"/>` + face(100,100,.8);
+  if(id==="trapesium") inner = `<path d="M68 50 H132 L172 165 H28 Z" fill="${c}" stroke="${S}" stroke-width="5" stroke-linejoin="round"/>` + face(100,120,.85);
+  return `<svg viewBox="0 0 200 210" width="${w}" height="${Math.round(w*1.05)}" aria-hidden="true">${inner}</svg>`;
+}
+
+/* =====================================================
+   HERO + MARQUEE + KARTU KENALAN
+===================================================== */
+(function buildHero(){
+  const stage = document.getElementById("heroStage");
+  const items = [
+    {id:"persegi", cls:"float1", left:"2%", top:"4%", w:120},
+    {id:"lingkaran", cls:"float2", right:"4%", top:"0%", w:130},
+    {id:"segitiga", cls:"float3", left:"26%", bottom:"2%", w:150},
+    {id:"belahketupat", cls:"float4", right:"22%", bottom:"12%", w:105},
+    {id:"layang", cls:"float2", left:"38%", top:"0%", w:80}
+  ];
+  stage.innerHTML = items.map(o=>{
+    const pos = (o.left?`left:${o.left};`:"")+(o.right?`right:${o.right};`:"")+(o.top?`top:${o.top};`:"")+(o.bottom?`bottom:${o.bottom};`:"");
+    return `<div class="mascot ${o.cls}" style="position:absolute;${pos}">${mascotSVG(o.id,o.w)}</div>`;
+  }).join("");
+  document.getElementById("quizStartArt").innerHTML =
+    mascotSVG("segitiga",86)+mascotSVG("lingkaran",86)+mascotSVG("persegi",86);
+})();
+
+(function buildMarquee(){
+  const names = ORDER.map(id=>`<span>${MINI[id]} ${SHAPES[id].name} ${STAR}</span>`).join("");
+  document.getElementById("marqueeTrack").innerHTML = names + names;
+})();
+
+(function buildCards(){
+  const grid = document.getElementById("shapeGrid");
+  grid.innerHTML = ORDER.map((id,i)=>`
+    <article class="shape-card reveal" style="transition-delay:${(i%4)*70}ms">
+      <div class="shape-art" style="background:${SHAPES[id].color}33">
+        <span class="shape-num">${i+1}</span>${mascotSVG(id,132)}
+      </div>
+      <div class="shape-body">
+        <h3>${SHAPES[id].name}</h3>
+        <p>${SHAPES[id].desc.split(".")[0]}.</p>
+        <span class="mini-formula">L = ${SHAPES[id].luas}</span><br>
+        <button class="btn btn-small" style="background:${SHAPES[id].color}" data-learn="${id}">Pelajari ${SHAPES[id].name}</button>
+      </div>
+    </article>`).join("");
+  grid.addEventListener("click", e=>{
+    const b = e.target.closest("[data-learn]");
+    if(b) openModal(b.dataset.learn);
+  });
+})();
+
+(function buildRumus(){
+  document.getElementById("rumusGrid").innerHTML = ORDER.map(id=>`
+    <div class="rumus-card">
+      <div class="r-art">${MINI[id].replace('width="18" height="18"','width="44" height="44"')}</div>
+      <h4>${SHAPES[id].name}</h4>
+      <div class="rumus-line L">Luas: ${SHAPES[id].luas}</div>
+      <div class="rumus-line K">Keliling: ${SHAPES[id].keliling}</div>
+    </div>`).join("");
+})();
+
+/* =====================================================
+   MODAL DETAIL
+===================================================== */
+const overlay = document.getElementById("modalOverlay");
+function openModal(id){
+  const s = SHAPES[id];
+  document.getElementById("modalTitle").textContent = s.name;
+  document.getElementById("modalArt").innerHTML = mascotSVG(id,190);
+  document.getElementById("modalArt").style.background = s.color + "33";
+  document.getElementById("modalInfo").innerHTML = `
+    <h4><span class="dot" style="background:${s.color}"></span> Apa itu ${s.name}?</h4>
+    <p style="font-weight:700;font-size:.9rem;color:var(--muted)">${s.desc}</p>
+    <h4><span class="dot" style="background:var(--green)"></span> Sifat-sifatnya</h4>
+    <ul class="sifat-list">${s.sifat.map(t=>`<li>${t}</li>`).join("")}</ul>
+    <h4><span class="dot" style="background:var(--yellow)"></span> Rumusnya</h4>
+    <div class="formula-box"><span class="fl">Luas = ${s.luas}</span><br><span class="fk">Keliling = ${s.keliling}</span></div>
+    <h4><span class="dot" style="background:var(--pink)"></span> Contoh cepat</h4>
+    <div class="example-box">${s.contoh}</div>
+    <div style="margin-top:14px"><button class="btn btn-small" style="background:${s.color}" onclick="closeModal();goLab('${id}')">Coba di Lab Simulasi</button></div>`;
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(){ overlay.classList.remove("open"); document.body.style.overflow = ""; }
+document.getElementById("modalClose").onclick = closeModal;
+overlay.addEventListener("click", e=>{ if(e.target===overlay) closeModal(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+function goLab(id){
+  document.getElementById("lab").scrollIntoView({behavior:"smooth"});
+  setTimeout(()=>selectLabShape(id), 450);
+}
+
+/* =====================================================
+   LAB SIMULASI
+===================================================== */
+const LAB = {
+  persegi:          { params:[{k:"s", label:"Sisi", min:2, max:14, val:6}] },
+  persegipanjang:   { params:[{k:"p", label:"Panjang", min:3, max:16, val:10},{k:"l", label:"Lebar", min:2, max:12, val:6}] },
+  segitiga:         { params:[{k:"a", label:"Alas", min:3, max:16, val:10},{k:"t", label:"Tinggi", min:2, max:12, val:6}] },
+  lingkaran:        { params:[{k:"r", label:"Jari-jari (r)", min:2, max:14, val:7}] },
+  jajargenjang:     { params:[{k:"a", label:"Alas", min:4, max:16, val:10},{k:"t", label:"Tinggi", min:2, max:10, val:5},{k:"m", label:"Sisi miring", min:3, max:12, val:6}] },
+  belahketupat:     { params:[{k:"d1", label:"Diagonal 1", min:4, max:16, val:10},{k:"d2", label:"Diagonal 2", min:4, max:14, val:8},{k:"s", label:"Sisi", min:3, max:12, val:6}] },
+  layang:           { params:[{k:"d1", label:"Diagonal 1", min:4, max:16, val:10},{k:"d2", label:"Diagonal 2", min:4, max:14, val:8},{k:"a", label:"Sisi pendek", min:3, max:10, val:5},{k:"b", label:"Sisi panjang", min:4, max:12, val:7}] },
+  trapesium:        { params:[{k:"a", label:"Sisi atas", min:3, max:12, val:6},{k:"b", label:"Sisi bawah", min:5, max:18, val:12},{k:"t", label:"Tinggi", min:2, max:10, val:5}] }
+};
+let labShape = "persegi";
+const labVals = {};
+ORDER.forEach(id=>{ labVals[id]={}; LAB[id].params.forEach(p=>labVals[id][p.k]=p.val); });
+
+const pillsBox = document.getElementById("shapePills");
+const sliderBox = document.getElementById("sliderBox");
+const labSvg = document.getElementById("labSvg");
+
+function fmt(n){
+  const r = Math.round(n*100)/100;
+  return (r % 1 === 0) ? String(r) : String(r).replace(".", ",");
+}
+function selectLabShape(id){
+  labShape = id;
+  pillsBox.innerHTML = ORDER.map(o=>
+    `<button class="pill ${o===id?"active":""}" data-pill="${o}"><span class="pill-dot" style="background:${SHAPES[o].color}"></span>${SHAPES[o].name}</button>`
+  ).join("");
+  document.getElementById("labTitle").textContent = SHAPES[id].name + " — Percobaanmu";
+  sliderBox.innerHTML = LAB[id].params.map(p=>`
+    <div class="slider-group">
+      <label>${p.label} <span class="slider-val" id="val-${p.k}">${labVals[id][p.k]} cm</span></label>
+      <input type="range" min="${p.min}" max="${p.max}" step="1" value="${labVals[id][p.k]}" data-slider="${p.k}" aria-label="${p.label}">
+    </div>`).join("");
+  renderLab();
+}
+pillsBox.addEventListener("click", e=>{
+  const b = e.target.closest("[data-pill]");
+  if(b){ selectLabShape(b.dataset.pill); blip(520); }
+});
+sliderBox.addEventListener("input", e=>{
+  const s = e.target.closest("[data-slider]");
+  if(!s) return;
+  labVals[labShape][s.dataset.slider] = +s.value;
+  document.getElementById("val-"+s.dataset.slider).textContent = s.value + " cm";
+  renderLab();
+});
+document.getElementById("gridToggle").addEventListener("change", renderLab);
+
+/* Label ukuran dengan garis panah */
+function dimLine(x1,y1,x2,y2,text,dx,dy){
+  dx=dx||0; dy=dy||0;
+  const mx=(x1+x2)/2+dx, my=(y1+y2)/2+dy;
+  return `<g>
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2D2A32" stroke-width="2.5"/>
+    <circle cx="${x1}" cy="${y1}" r="3.5" fill="#2D2A32"/><circle cx="${x2}" cy="${y2}" r="3.5" fill="#2D2A32"/>
+    <rect x="${mx-34}" y="${my-14}" width="68" height="26" rx="9" fill="#fff" stroke="#2D2A32" stroke-width="2.5"/>
+    <text x="${mx}" y="${my+5}" text-anchor="middle" font-size="13.5" font-weight="900" fill="#2D2A32" font-family="Nunito,sans-serif">${text}</text>
+  </g>`;
+}
+function dashedH(x1,x2,y,text){
+  return `<g opacity=".9">
+    <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#2D2A32" stroke-width="2" stroke-dasharray="7 6"/>
+    <rect x="${(x1+x2)/2-30}" y="${y-30}" width="60" height="24" rx="8" fill="#B983FF" stroke="#2D2A32" stroke-width="2.5"/>
+    <text x="${(x1+x2)/2}" y="${y-13}" text-anchor="middle" font-size="13" font-weight="900" fill="#fff" font-family="Nunito,sans-serif">${text}</text>
+  </g>`;
+}
+function dashedV(x,y1,y2,text){
+  return `<g opacity=".9">
+    <line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" stroke="#2D2A32" stroke-width="2" stroke-dasharray="7 6"/>
+    <rect x="${x+8}" y="${(y1+y2)/2-13}" width="60" height="24" rx="8" fill="#B983FF" stroke="#2D2A32" stroke-width="2.5"/>
+    <text x="${x+38}" y="${(y1+y2)/2+4}" text-anchor="middle" font-size="13" font-weight="900" fill="#fff" font-family="Nunito,sans-serif">${text}</text>
+  </g>`;
+}
+
+function renderLab(){
+  const v = labVals[labShape], c = SHAPES[labShape].color, S = "#2D2A32";
+  const showGrid = document.getElementById("gridToggle").checked;
+  const CX = 220, CY = 165;
+  let shape = "", overlay = "", dims = "", faceG = "";
+  let luas = 0, kel = 0, sL = "", sK = "", piNote = "";
+
+  const gridDef = `<defs><pattern id="kotak" width="15" height="15" patternUnits="userSpaceOnUse">
+      <rect width="15" height="15" fill="rgba(255,255,255,.55)"/>
+      <path d="M15 0H0V15" fill="none" stroke="#2D2A32" stroke-width="1" opacity=".5"/>
+    </pattern></defs>`;
+
+  if(labShape==="persegi"){
+    const s=v.s, px=s*15;
+    const x=CX-px/2, y=CY-px/2;
+    shape=`<rect x="${x}" y="${y}" width="${px}" height="${px}" rx="12" fill="${c}" stroke="${S}" stroke-width="4.5"/>`;
+    overlay=`<rect x="${x}" y="${y}" width="${px}" height="${px}" rx="12" fill="url(#kotak)"/>`;
+    faceG=face(CX,CY,Math.max(.55,Math.min(1,px/170)));
+    dims=dimLine(x,y+px+18,x+px,y+px+18,s+" cm")+dimLine(x-18,y,x-18,y+px,s+" cm",-34,0);
+    luas=s*s; kel=4*s;
+    sL=`L = sisi × sisi<br>L = ${s} × ${s} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 4 × sisi<br>K = 4 × ${s} = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="persegipanjang"){
+    const p=v.p,l=v.l, w=p*13.5, h=l*15;
+    const x=CX-w/2, y=CY-h/2;
+    shape=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" fill="${c}" stroke="${S}" stroke-width="4.5"/>`;
+    overlay=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" fill="url(#kotak)"/>`;
+    faceG=face(CX,CY,Math.max(.5,Math.min(1,Math.min(w,h)/150)));
+    dims=dimLine(x,y+h+18,x+w,y+h+18,p+" cm")+dimLine(x-18,y,x-18,y+h,l+" cm",-34,0);
+    luas=p*l; kel=2*(p+l);
+    sL=`L = panjang × lebar<br>L = ${p} × ${l} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 2 × (p + l)<br>K = 2 × (${p} + ${l}) = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="segitiga"){
+    const a=v.a,t=v.t, w=a*13.5, h=t*16;
+    const x=CX-w/2, yb=CY+h/2, yt=CY-h/2;
+    shape=`<path d="M${x} ${yb} H${x+w} L${x} ${yt} Z" fill="${c}" stroke="${S}" stroke-width="4.5" stroke-linejoin="round"/>`;
+    overlay=`<path d="M${x} ${yb} H${x+w} L${x} ${yt} Z" fill="url(#kotak)"/>`;
+    faceG=face(x+w*0.32,yb-h*0.3,.62);
+    const mir=Math.sqrt(a*a+t*t);
+    dims=dimLine(x,yb+18,x+w,yb+18,"alas "+a)+dimLine(x-18,yb,x-18,yt,"t "+t,-30,0);
+    luas=.5*a*t; kel=a+t+mir;
+    sL=`L = ½ × alas × tinggi<br>L = ½ × ${a} × ${t} = <b>${fmt(luas)} cm²</b>`;
+    sK=`Sisi miring ≈ ${fmt(mir)} cm<br>K = ${a} + ${t} + ${fmt(mir)} = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="lingkaran"){
+    const r=v.r, R=r*10.5;
+    shape=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="${c}" stroke="${S}" stroke-width="4.5"/>`;
+    overlay=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="url(#kotak)" opacity=".7"/>`;
+    faceG=face(CX,CY,Math.max(.55,Math.min(1.05,R/95)));
+    dims=`<g><line x1="${CX}" y1="${CY}" x2="${CX+R}" y2="${CY}" stroke="${S}" stroke-width="2.5"/>
+      <circle cx="${CX}" cy="${CY}" r="4" fill="${S}"/>
+      <rect x="${CX+R/2-32}" y="${CY-34}" width="64" height="26" rx="9" fill="#fff" stroke="${S}" stroke-width="2.5"/>
+      <text x="${CX+R/2}" y="${CY-16}" text-anchor="middle" font-size="13.5" font-weight="900" font-family="Nunito,sans-serif">r = ${r}</text></g>`
+      +dimLine(CX-R,CY+R+20,CX+R,CY+R+20,"d = "+(2*r)+" cm");
+    const pi = (r%7===0)?"22/7":"3,14";
+    const piv = (r%7===0)?22/7:3.14;
+    luas=piv*r*r; kel=2*piv*r;
+    sL=`L = π × r × r<br>L = ${pi} × ${r} × ${r} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 2 × π × r<br>K = 2 × ${pi} × ${r} = <b>${fmt(kel)} cm</b>`;
+    piNote = (r%7===0)
+      ? `Jari-jari ${r} adalah kelipatan 7, jadi kita memakai π = 22/7. Pintar!`
+      : `Jari-jari ${r} bukan kelipatan 7, jadi kita memakai π = 3,14.`;
+  }
+  if(labShape==="jajargenjang"){
+    const a=v.a,t=v.t,m=v.m, w=a*13.5, h=t*17, off=44;
+    const x=CX-w/2-off/2, y=CY-h/2;
+    shape=`<path d="M${x+off} ${y} H${x+w+off} L${x+w} ${y+h} H${x} Z" fill="${c}" stroke="${S}" stroke-width="4.5" stroke-linejoin="round"/>`;
+    overlay=`<path d="M${x+off} ${y} H${x+w+off} L${x+w} ${y+h} H${x} Z" fill="url(#kotak)"/>`;
+    faceG=face(CX,CY,.7);
+    dims=dimLine(x,y+h+18,x+w,y+h+18,"alas "+a)+dashedV(x+w+off+16,y,y+h,"t="+t);
+    luas=a*t; kel=2*(a+m);
+    sL=`L = alas × tinggi<br>L = ${a} × ${t} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 2 × (alas + miring)<br>K = 2 × (${a} + ${m}) = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="belahketupat"){
+    const d1=v.d1,d2=v.d2,s=v.s, w=d1*13.5, h=d2*14;
+    shape=`<path d="M${CX} ${CY-h/2} L${CX+w/2} ${CY} L${CX} ${CY+h/2} L${CX-w/2} ${CY} Z" fill="${c}" stroke="${S}" stroke-width="4.5" stroke-linejoin="round"/>`;
+    overlay=`<path d="M${CX} ${CY-h/2} L${CX+w/2} ${CY} L${CX} ${CY+h/2} L${CX-w/2} ${CY} Z" fill="url(#kotak)"/>`;
+    faceG=face(CX,CY,.62);
+    dims=dashedH(CX-w/2,CX+w/2,CY,"d1="+d1)+dashedV(CX+34,CY-h/2,CY+h/2,"d2="+d2);
+    luas=.5*d1*d2; kel=4*s;
+    sL=`L = ½ × d1 × d2<br>L = ½ × ${d1} × ${d2} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 4 × sisi<br>K = 4 × ${s} = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="layang"){
+    const d1=v.d1,d2=v.d2,a=v.a,b=v.b, w=d1*13.5, h=d2*14;
+    const top=CY-h*0.32, bot=CY+h*0.68;
+    shape=`<path d="M${CX} ${top-h*0.18} L${CX+w/2} ${top} L${CX} ${bot} L${CX-w/2} ${top} Z" fill="${c}" stroke="${S}" stroke-width="4.5" stroke-linejoin="round"/>`;
+    overlay=`<path d="M${CX} ${top-h*0.18} L${CX+w/2} ${top} L${CX} ${bot} L${CX-w/2} ${top} Z" fill="url(#kotak)"/>`;
+    faceG=face(CX,top+22,.55);
+    dims=dashedH(CX-w/2,CX+w/2,top,"d1="+d1)+dashedV(CX+30,top-h*0.18,bot,"d2="+d2);
+    luas=.5*d1*d2; kel=2*(a+b);
+    sL=`L = ½ × d1 × d2<br>L = ½ × ${d1} × ${d2} = <b>${fmt(luas)} cm²</b>`;
+    sK=`K = 2 × (pendek + panjang)<br>K = 2 × (${a} + ${b}) = <b>${fmt(kel)} cm</b>`;
+  }
+  if(labShape==="trapesium"){
+    const a=v.a,b=v.b,t=v.t, wt=a*13, wb=b*13, h=t*17;
+    const y=CY-h/2, yb=CY+h/2;
+    shape=`<path d="M${CX-wt/2} ${y} H${CX+wt/2} L${CX+wb/2} ${yb} H${CX-wb/2} Z" fill="${c}" stroke="${S}" stroke-width="4.5" stroke-linejoin="round"/>`;
+    overlay=`<path d="M${CX-wt/2} ${y} H${CX+wt/2} L${CX+wb/2} ${yb} H${CX-wb/2} Z" fill="url(#kotak)"/>`;
+    faceG=face(CX,CY+8,.62);
+    const kaki=Math.sqrt(t*t+Math.pow(Math.abs(wb-wt)/2/13,2)*1+0); // pendekatan sederhana dalam cm:
+    const kakiCm=Math.sqrt(t*t+Math.pow((b-a)/2,2));
+    dims=dimLine(CX-wt/2,y-16,CX+wt/2,y-16,"atas "+a,0,-6)
+        +dimLine(CX-wb/2,yb+18,CX+wb/2,yb+18,"bawah "+b)
+        +dashedV(CX+Math.max(wt,wb)/2+18,y,yb,"t="+t);
+    luas=.5*(a+b)*t; kel=a+b+2*kakiCm;
+    sL=`L = ½ × (atas + bawah) × t<br>L = ½ × (${a} + ${b}) × ${t} = <b>${fmt(luas)} cm²</b>`;
+    sK=`Kaki ≈ ${fmt(kakiCm)} cm<br>K = ${a} + ${b} + 2×${fmt(kakiCm)} = <b>${fmt(kel)} cm</b>`;
+  }
+
+  labSvg.innerHTML = gridDef + shape + (showGrid?overlay:"") + faceG + dims;
+  document.getElementById("luasVal").innerHTML = fmt(luas)+" <small>cm²</small>";
+  document.getElementById("kelVal").innerHTML = fmt(kel)+" <small>cm</small>";
+  document.getElementById("luasSteps").innerHTML = sL;
+  document.getElementById("kelSteps").innerHTML = sK;
+  const pn = document.getElementById("piNote");
+  if(piNote){ pn.textContent = piNote; pn.classList.add("show"); } else pn.classList.remove("show");
+}
+selectLabShape("persegi");
+
+/* =====================================================
+   KUIS
+===================================================== */
+const QUIZ = [
+  {q:"Sebuah persegi punya sisi 6 cm. Berapa luasnya?", art:"persegi",
+   opts:["12 cm²","24 cm²","36 cm²","30 cm²"], a:2,
+   ex:"Luas persegi = sisi × sisi = 6 × 6 = 36 cm²."},
+  {q:"Persegi panjang dengan panjang 8 cm dan lebar 5 cm. Berapa kelilingnya?", art:"persegipanjang",
+   opts:["26 cm","40 cm","13 cm","30 cm"], a:0,
+   ex:"Keliling = 2 × (8 + 5) = 2 × 13 = 26 cm."},
+  {q:"Segitiga punya alas 10 cm dan tinggi 6 cm. Berapa luasnya?", art:"segitiga",
+   opts:["60 cm²","30 cm²","16 cm²","32 cm²"], a:1,
+   ex:"Luas = ½ × 10 × 6 = 30 cm². Jangan lupa setengahnya!"},
+  {q:"Lingkaran berjari-jari 7 cm memakai π = 22/7. Berapa luasnya?", art:"lingkaran",
+   opts:["44 cm²","154 cm²","77 cm²","308 cm²"], a:1,
+   ex:"Luas = 22/7 × 7 × 7 = 22 × 7 = 154 cm²."},
+  {q:"Lihat gambar ini! Bangun apakah aku?", art:"jajargenjang",
+   opts:["Trapesium","Jajar Genjang","Belah Ketupat","Layang-Layang"], a:1,
+   ex:"Betul! Aku Jajar Genjang, seperti persegi panjang yang miring."},
+  {q:"Belah ketupat dengan diagonal 8 cm dan 6 cm. Berapa luasnya?", art:"belahketupat",
+   opts:["48 cm²","14 cm²","24 cm²","28 cm²"], a:2,
+   ex:"Luas = ½ × 8 × 6 = 24 cm²."},
+  {q:"Layang-layang dengan diagonal 10 cm dan 8 cm. Berapa luasnya?", art:"layang",
+   opts:["80 cm²","40 cm²","36 cm²","18 cm²"], a:1,
+   ex:"Luas = ½ × 10 × 8 = 40 cm²."},
+  {q:"Trapesium: sisi atas 6 cm, bawah 10 cm, tinggi 4 cm. Berapa luasnya?", art:"trapesium",
+   opts:["64 cm²","32 cm²","40 cm²","20 cm²"], a:1,
+   ex:"Luas = ½ × (6 + 10) × 4 = ½ × 16 × 4 = 32 cm²."},
+  {q:"Keliling sebuah persegi adalah 20 cm. Berapa panjang sisinya?", art:"persegi",
+   opts:["4 cm","5 cm","6 cm","10 cm"], a:1,
+   ex:"Sisi = Keliling ÷ 4 = 20 ÷ 4 = 5 cm."},
+  {q:"Lihat gambar ini! Bangun apakah aku?", art:"trapesium",
+   opts:["Jajar Genjang","Belah Ketupat","Persegi Panjang","Trapesium"], a:3,
+   ex:"Tepat! Aku Trapesium dengan sepasang sisi sejajar."}
+];
+const KEYS = ["A","B","C","D"];
+let qi=0, score=0, locked=false;
+const qStart=document.getElementById("quizStart"), qPlay=document.getElementById("quizPlay"), qRes=document.getElementById("quizResult");
+
+document.getElementById("quizStartBtn").onclick = ()=>{
+  qi=0; score=0;
+  qStart.style.display="none"; qRes.style.display="none"; qPlay.style.display="block";
+  showQ(); blip(660);
+  document.getElementById("kuis").scrollIntoView({behavior:"smooth",block:"center"});
+};
+function showQ(){
+  locked=false;
+  const Q=QUIZ[qi];
+  document.getElementById("qCount").textContent=`Soal ${qi+1}/${QUIZ.length}`;
+  document.getElementById("qBar").style.width=(qi/QUIZ.length*100)+"%";
+  document.getElementById("qScore").textContent="Skor: "+score;
+  document.getElementById("quizArt").innerHTML=mascotSVG(Q.art,110);
+  document.getElementById("quizQ").textContent=Q.q;
+  const fb=document.getElementById("quizFb"); fb.className="quiz-feedback"; fb.innerHTML="";
+  document.getElementById("quizNext").style.display="none";
+  document.getElementById("quizNext").textContent = qi===QUIZ.length-1 ? "Lihat Hasilku" : "Soal Berikutnya";
+  document.getElementById("quizOpts").innerHTML=Q.opts.map((o,i)=>
+    `<button class="opt" data-opt="${i}"><span class="key">${KEYS[i]}</span><span>${o}</span></button>`).join("");
+}
+document.getElementById("quizOpts").addEventListener("click",e=>{
+  const b=e.target.closest("[data-opt]");
+  if(!b||locked) return;
+  locked=true;
+  const Q=QUIZ[qi], pick=+b.dataset.opt;
+  const btns=[...document.querySelectorAll(".opt")];
+  btns.forEach(x=>x.disabled=true);
+  btns[Q.a].classList.add("correct");
+  const fb=document.getElementById("quizFb");
+  if(pick===Q.a){
+    score+=10;
+    fb.className="quiz-feedback good";
+    fb.innerHTML=`<b>Benar! Kamu hebat (+10 poin).</b><br>${Q.ex}`;
+    soundGood(); confettiBurst(90);
+  }else{
+    b.classList.add("wrong");
+    fb.className="quiz-feedback bad";
+    fb.innerHTML=`<b>Ups, kurang tepat. Jawaban benar: ${KEYS[Q.a]}.</b><br>${Q.ex}`;
+    soundBad();
+  }
+  document.getElementById("qScore").textContent="Skor: "+score;
+  document.getElementById("qBar").style.width=((qi+1)/QUIZ.length*100)+"%";
+  document.getElementById("quizNext").style.display="inline-flex";
+});
+document.getElementById("quizNext").onclick=()=>{
+  blip(520);
+  if(qi<QUIZ.length-1){ qi++; showQ(); } else showResult();
+};
+function starSVG(fill){
+  return `<svg viewBox="0 0 24 24" width="54" height="54"><path d="M12 1l3 7 7 .6-5.4 4.7 1.6 7L12 16l-6.2 4.3 1.6-7L2 8.6 9 8z" fill="${fill}" stroke="#2D2A32" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+}
+function showResult(){
+  qPlay.style.display="none"; qRes.style.display="block";
+  document.getElementById("qFinal").textContent=score;
+  let stars=1,title="",msg="";
+  if(score>=90){stars=3;title="Luar Biasa! Master Bangun Datar!";msg="Nilai sempurna! Kamu sudah menguasai semua bangun datar. Pertahankan!";}
+  else if(score>=70){stars=3;title="Hebat Sekali!";msg="Kamu menjawab hampir semua dengan benar. Sedikit lagi sempurna!";}
+  else if(score>=50){stars=2;title="Bagus! Terus Berlatih!";msg="Dasar-dasarnya sudah kamu kuasai. Coba main di Lab Simulasi lalu ulangi kuisnya!";}
+  else if(score>=30){stars=1;title="Tetap Semangat!";msg="Tidak apa-apa salah, yang penting berani mencoba. Pelajari lagi kartunya, lalu coba lagi ya!";}
+  else{stars=1;title="Jangan Menyerah!";msg="Setiap master pernah jadi pemula. Ayo belajar di Lab Simulasi, lalu kembali berjuang!";}
+  document.getElementById("qTitle").textContent=title;
+  document.getElementById("qMsg").textContent=msg+` (Benar ${score/10} dari ${QUIZ.length} soal)`;
+  document.getElementById("qStars").innerHTML=[0,1,2].map(i=>starSVG(i<stars?"#FFD93D":"#E8E4F5")).join("");
+  if(score>=50){ confettiBurst(220); soundFanfare(); } else soundBad();
+}
+document.getElementById("quizRetry").onclick=()=>{
+  qi=0;score=0;qRes.style.display="none";qPlay.style.display="block";showQ();
+};
+
+/* =====================================================
+   CONFETTI (kanvas, bentuk geometri — tanpa emoji)
+===================================================== */
+const cvs=document.getElementById("confetti"), ctx=cvs.getContext("2d");
+let parts=[];
+function sizeConfetti(){ cvs.width=innerWidth; cvs.height=innerHeight; }
+addEventListener("resize",sizeConfetti); sizeConfetti();
+function confettiBurst(n){
+  const colors=["#FFD93D","#FF8FB1","#4FC3F7","#7ED957","#B983FF","#FF9F45","#4ED0C4"];
+  for(let i=0;i<n;i++){
+    parts.push({x:innerWidth/2+(Math.random()-.5)*260, y:innerHeight*0.35,
+      vx:(Math.random()-.5)*13, vy:Math.random()*-11-3, g:.42+Math.random()*.2,
+      s:6+Math.random()*8, r:Math.random()*Math.PI, vr:(Math.random()-.5)*.3,
+      c:colors[Math.floor(Math.random()*colors.length)], shape:Math.floor(Math.random()*3), life:1});
+  }
+}
+(function tick(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  parts=parts.filter(p=>p.life>0&&p.y<cvs.height+30);
+  for(const p of parts){
+    p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.985; p.r+=p.vr; p.life-=.006;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.globalAlpha=Math.max(p.life,0); ctx.fillStyle=p.c;
+    if(p.shape===0) ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.62);
+    else if(p.shape===1){ ctx.beginPath(); ctx.arc(0,0,p.s/2,0,7); ctx.fill(); }
+    else{ ctx.beginPath(); ctx.moveTo(0,-p.s/2); ctx.lineTo(p.s/2,p.s/2); ctx.lineTo(-p.s/2,p.s/2); ctx.closePath(); ctx.fill(); }
+    ctx.restore();
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* =====================================================
+   SUARA (Web Audio API — tanpa file eksternal)
+===================================================== */
+let soundOn=true, AC=null;
+function ac(){ if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)(); return AC; }
+function tone(f,t0,dur,type){
+  if(!soundOn) return;
+  try{
+    const a=ac(), o=a.createOscillator(), g=a.createGain();
+    o.type=type||"sine"; o.frequency.value=f;
+    g.gain.setValueAtTime(.001,a.currentTime+t0);
+    g.gain.exponentialRampToValueAtTime(.22,a.currentTime+t0+.02);
+    g.gain.exponentialRampToValueAtTime(.001,a.currentTime+t0+dur);
+    o.connect(g); g.connect(a.destination);
+    o.start(a.currentTime+t0); o.stop(a.currentTime+t0+dur+.05);
+  }catch(e){}
+}
+function blip(f){ tone(f||600,0,.12,"triangle"); }
+function soundGood(){ tone(523,0,.14); tone(659,.1,.14); tone(784,.2,.22); }
+function soundBad(){ tone(330,0,.16,"sawtooth"); tone(220,.12,.24,"sawtooth"); }
+function soundFanfare(){ [523,659,784,1047,784,1047].forEach((f,i)=>tone(f,i*.12,.18)); }
+document.getElementById("soundBtn").onclick=function(){
+  soundOn=!soundOn;
+  document.getElementById("soundOnIcon").style.display=soundOn?"block":"none";
+  document.getElementById("soundOffIcon").style.display=soundOn?"none":"block";
+  if(soundOn) blip(700);
+};
+
+/* =====================================================
+   NAV MOBILE, SCROLL, REVEAL
+===================================================== */
+const ham=document.getElementById("hamburger"), mm=document.getElementById("mobileMenu");
+ham.onclick=()=>mm.classList.toggle("open");
+mm.querySelectorAll("a").forEach(a=>a.onclick=()=>mm.classList.remove("open"));
+const backTop=document.getElementById("backTop");
+addEventListener("scroll",()=>backTop.classList.toggle("show",scrollY>600));
+backTop.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target);} }),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
